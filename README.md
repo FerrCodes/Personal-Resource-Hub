@@ -1,16 +1,37 @@
+<div align="center">
+
 # 📚 Personal Resource Hub
 
-<p>
-  <img src="https://img.shields.io/badge/PHP-8.0%2B-777BB4?style=flat&logo=php&logoColor=white" alt="PHP Version" />
-  <img src="https://img.shields.io/badge/MySQL-MariaDB-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" />
-  <img src="https://img.shields.io/badge/build-passing-brightgreen?style=flat" alt="Build Status" />
-  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat" alt="Version" />
-  <img src="https://img.shields.io/badge/license-MIT-yellow?style=flat" alt="License" />
-</p>
+**Aplikasi web manajemen koleksi sumber daya digital** — simpan, kelola, dan organisir link dari YouTube, Spotify, Instagram, artikel, dan lainnya dalam satu tempat.
 
-**Personal Resource Hub** adalah aplikasi web manajemen koleksi sumber daya digital (link dari YouTube, Spotify, Instagram, artikel, dll) yang dibangun dengan **PHP Native** dan **MySQL**. Proyek ini adalah portofolio full-stack pertama yang saya buat dari nol hingga deployment.
+<img src="https://img.shields.io/badge/PHP-8.0%2B-777BB4?style=flat&logo=php&logoColor=white" alt="PHP Version" />
+<img src="https://img.shields.io/badge/MySQL-MariaDB-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" />
+<img src="https://img.shields.io/badge/build-passing-brightgreen?style=flat" alt="Build Status" />
+<img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat" alt="Version" />
+<img src="https://img.shields.io/badge/license-MIT-yellow?style=flat" alt="License" />
 
-🔗 **Live Demo:** [personalhub-feri.freepage.cc](https://personalhub-feri.freepage.cc)
+**[🔗 Live Demo](https://personalhub-feri.freepage.cc)**
+
+</div>
+
+---
+
+Dibangun dengan **PHP Native** dan **MySQL**, proyek ini adalah portofolio full-stack pertama yang saya buat dari nol hingga deployment.
+
+---
+
+## 📑 Daftar Isi
+
+- [🎯 Kenapa Proyek Ini Dibuat?](#-kenapa-proyek-ini-dibuat)
+- [✨ Fitur Utama](#-fitur-utama)
+- [🧰 Teknologi](#-teknologi)
+- [🗃️ Struktur Database](#️-struktur-database)
+- [🚀 Cara Install di Local](#-cara-install-di-local)
+- [📸 Screenshot](#-screenshot)
+- [📅 Timeline](#-timeline)
+- [🧠 Apa yang Saya Pelajari](#-apa-yang-saya-pelajari)
+- [👨‍💻 Pengembang](#-pengembang)
+- [📄 Lisensi](#-lisensi)
 
 ---
 
@@ -18,7 +39,7 @@
 
 Saya sering menyimpan link dari berbagai platform (YouTube, Spotify, Instagram, artikel) tapi bookmark browser berantakan. Saya butuh alat untuk mengelola semua link itu di satu tempat — jadi saya buat sendiri.
 
-Proyek ini bukan hanya untuk portofolio, tapi saya gunakan **setiap hari** untuk mengorganisir resource digital saya.
+> 💡 Proyek ini bukan hanya untuk portofolio, tapi saya gunakan **setiap hari** untuk mengorganisir resource digital saya.
 
 ---
 
@@ -142,23 +163,31 @@ http://localhost/personal-resource-hub/login.php
 
 ## 📸 Screenshot
 
+<div align="center">
+
 | Dashboard | Detail Resource |
-|---|---|
+|:---:|:---:|
 | `docs/screenshots/dashboard.png` | `docs/screenshots/detail.png` |
 
 | Settings | Aktivitas |
-|---|---|
+|:---:|:---:|
 | `docs/screenshots/settings.png` | `docs/screenshots/activity.png` |
+
+</div>
 
 ---
 
 ## 📅 Timeline
 
+<div align="center">
+
 | Milestone | Tanggal |
-|---|---|
+|:---|:---:|
 | 🏁 Mulai | 13 Juni 2026 |
 | ✅ Selesai | 2 Juli 2026 |
 | ⏳ Durasi | ± 3 minggu |
+
+</div>
 
 ---
 
@@ -175,20 +204,29 @@ http://localhost/personal-resource-hub/login.php
 
 ## 👨‍💻 Pengembang
 
+<div align="center">
+
 **Feri**
 
-- 🐙 GitHub
-- 💼 LinkedIn *(jika sudah ada, update linknya)*
-- 📸 Instagram
+🐙 GitHub · 💼 LinkedIn *(jika sudah ada, update linknya)* · 📸 Instagram
+
+</div>
 
 ---
 
 ## 📄 Lisensi
 
-MIT — bebas digunakan, dimodifikasi, dan didistribusikan dengan mencantumkan kredit ke penulis asli.
+Didistribusikan di bawah lisensi **MIT**. Bebas digunakan, dimodifikasi, dan didistribusikan dengan mencantumkan kredit ke penulis asli.
 
 ---
 
-## 🙏 Terima Kasih
+<div align="center">
 
-Terima kasih sudah melihat proyek ini! Jika ada saran atau masukan, silakan buat *issue* atau *pull request*. 😊
+### 🙏 Terima Kasih
+
+Terima kasih sudah melihat proyek ini!
+Jika ada saran atau masukan, silakan buat *issue* atau *pull request*. 😊
+
+⭐ **Jangan lupa kasih star kalau proyek ini bermanfaat!**
+
+</div>
