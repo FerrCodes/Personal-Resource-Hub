@@ -114,7 +114,7 @@ $stmt->close();
              Berisi ringkasan statistik resource.
              ===================================================== -->
         <main class="main-content">
-            <h1 class="content-title">📊 Learning Insights Dashboard</h1>
+            <h1 class="content-title">📊 Insights Dashboard</h1>
             <p class="page-description">Kumpulkan, kelola, dan lacak progress resource digital favoritmu.</p>
 
             <!-- ===== Grid kartu statistik ===== -->

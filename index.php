@@ -168,7 +168,7 @@ if (isset($_GET['favorit']) && $_GET['favorit'] == 1) {
              Berisi filter, pencarian, dan kartu resource.
              ===================================================== -->
         <main class="main-content">
-            <h1 class="content-title">📚 My Resources Collection</h1>
+            <h1 class="content-title">📚 Koleksi Sumber Dayaku</h1>
 
             <?php if ($filter_tag !== ''): ?>
                 <!-- ===== Info filter tag aktif ===== -->
