@@ -110,7 +110,7 @@ $action_map = [
         <!-- MAIN CONTENT -->
         <main class="main-content">
             <h1 class="content-title">🕐 Aktivitas Terbaru</h1>
-            <p class="page-description">Riwayat aktivitas terakhir kamu di Resource Hub.</p>
+            <p class="page-description">Riwayat aktivitas terakhir kamu di Resource Hub</p>
 
             <?php if (isset($success)): ?>
                 <div id="notif-success" style="background:#d4edda; color:#155724; padding:12px 16px; border-radius:8px; margin-bottom:15px;">
