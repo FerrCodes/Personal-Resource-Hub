@@ -115,7 +115,7 @@ $stmt->close();
              ===================================================== -->
         <main class="main-content">
             <h1 class="content-title">📊 Learning Insights Dashboard</h1>
-            <p class="page-description">Ringkasan dan progress pengelolaan sumber belajar digital kamu.</p>
+            <p class="page-description">Kumpulkan, kelola, dan lacak progress resource digital favoritmu.</p>
 
             <!-- ===== Grid kartu statistik ===== -->
             <section class="dashboard-grid" aria-label="Statistik resource">
