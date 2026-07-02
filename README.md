@@ -1,131 +1,110 @@
 # 📚 Personal Resource Hub
 
-![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-MariaDB-4479A1?logo=mysql&logoColor=white)
-![Version](https://img.shields.io/badge/Version-v1.0-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/status-selesai-brightgreen)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-yellow)
+![PHP](https://img.shields.io/badge/PHP-8.x-777bb4)
+![MySQL](https://img.shields.io/badge/MySQL-MariaDB-4479A1)
 
-> A personal web application to organize digital learning resources built with **PHP Native**, **MySQL**, and **Vanilla JavaScript**.
+**Personal Resource Hub** adalah aplikasi web manajemen koleksi sumber daya digital (link dari YouTube, Spotify, Instagram, artikel, dll) yang dibangun dengan **PHP Native** dan **MySQL**. Proyek ini adalah portofolio full-stack pertama yang saya buat dari nol hingga deployment.
 
-🔗 **Live Demo:** https://personalhub-feri.freepage.cc/login.php
-
----
-
-# 🎯 About
-
-Personal Resource Hub is a web application that helps users organize digital resources from various platforms such as:
-
-- 📺 YouTube
-- 🎵 Spotify
-- 📄 Articles
-- 💻 GitHub
-- 📷 Instagram
-- 📚 Documentation
-
-This project was built from scratch as my first complete PHP Native portfolio project, from database design to deployment.
+🔗 **Live Demo:** [personalhub-feri.freepage.cc](https://personalhub-feri.freepage.cc)
 
 ---
 
-# ✨ Features
+## 🎯 Kenapa Proyek Ini Dibuat?
 
-## 🔐 Authentication
+Saya sering menyimpan link dari berbagai platform (YouTube, Spotify, Instagram, artikel) tapi bookmark browser berantakan. Saya butuh alat untuk mengelola semua link itu di satu tempat — jadi saya buat sendiri.
 
-- Register & Login
-- Email Verification (SMTP)
-- Forgot Password
-- Reset Password
-- User Whitelist
-- Pending Approval Page
+Proyek ini bukan hanya untuk portofolio, tapi saya gunakan **setiap hari** untuk mengorganisir resource digital saya.
 
-## 📚 Resource Management
+---
 
-- CRUD Resource
-- Favorite / Pin Resource
+## ✨ Fitur Utama
+
+### 🔐 Autentikasi
+- Register & Login (dengan CSRF Protection)
+- Verifikasi Email via SMTP (Gmail)
+- Lupa Password & Reset Password
+- Whitelist User (hanya admin yang bisa mengizinkan login)
+- Halaman Pending untuk user yang menunggu aktivasi
+
+### 📖 Manajemen Resource
+- CRUD Resource (Tambah, Lihat, Edit, Hapus)
+- Tagging (Many-to-Many) — Tambah, Edit, Hapus Tag dari Resource
 - Rating (1–10)
-- Many-to-Many Tagging
-- Search Resource
-- Filter by Status
-- Filter by Type
-- Filter by Tag
+- Fitur Favorit / Pin
+- Filter & Pencarian (berdasarkan jenis, status, tag, dan kata kunci)
 
-## 📊 Dashboard
+### 📊 Dashboard & Statistik
+- Kartu Statistik (Total, Belum Dibaca, Sedang Dipelajari, Selesai, Arsip)
+- 5 Resource Terbaru
+- Statistik Akun (Total Resource, Favorit, Selesai, Total Tag)
+- Log Aktivitas (riwayat aksi user)
 
-- Total Resources
-- Reading Progress
-- Favorite Resources
-- Latest Resources
-- User Activity Log
+### 📥 Ekspor Data
+- Ekspor semua resource ke CSV
 
-## 🌙 User Experience
+### 🌙 Tampilan
+- Dark / Light Mode (tersimpan di localStorage)
+- Responsif Mobile (sidebar collapse, tombol full width di HP)
+- Tooltip Info untuk penjelasan fitur
 
-- Dark / Light Mode
-- Responsive Design
-- Sidebar Collapse
-- Tooltip Information
+### 🛡️ Keamanan
+- CSRF Token di setiap form
+- Prepared Statement (anti SQL Injection)
+- Password di-hash dengan Bcrypt
+- Whitelist User (hanya user terverifikasi yang bisa login)
+- Proteksi file sensitif via `.htaccess`
+- Validasi URL (deteksi link mencurigakan)
 
-## 🛡 Security
-
-- CSRF Protection
-- Prepared Statements
-- Password Hashing (Bcrypt)
-- URL Validation
-- Protected Configuration Files (.htaccess)
-
----
-
-# 🛠 Tech Stack
-
-| Layer | Technology |
-|--------|------------|
-| Backend | PHP 8 Native |
-| Database | MySQL / MariaDB |
-| Frontend | HTML5, CSS3, JavaScript |
-| Mail | PHPMailer |
-| Hosting | InfinityFree |
-| Version Control | Git & GitHub |
+### 👥 Manajemen User (Admin Only)
+- Hanya admin (Feri) yang bisa mengakses
+- Izinkan / Blokir user lain
+- User yang diblokir akan diarahkan ke halaman pending
 
 ---
 
-# 🗄 Database Structure
+## 🧰 Teknologi
 
-| Table | Description |
-|--------|-------------|
-| users | User Account |
-| resources | Resource Collection |
-| tags | Tag List |
-| resource_tag | Many-to-Many Relationship |
-| user_logs | User Activity History |
+| Lapisan | Teknologi |
+|---|---|
+| 🖥️ **Backend** | PHP 8 (Native) |
+| 🗄️ **Database** | MySQL (MariaDB) |
+| 🎨 **Frontend** | HTML5, CSS3, JavaScript (Vanilla) |
+| ✉️ **Email** | PHPMailer + Gmail SMTP |
+| ☁️ **Hosting** | InfinityFree |
+| 🔧 **Version Control** | Git & GitHub |
 
 ---
 
-# 🚀 Installation
+## 📁 Struktur Database
 
-## Clone Repository
+| Tabel | Deskripsi |
+|---|---|
+| `users` | Data user (username, email, password, verifikasi, reset token, whitelist) |
+| `resources` | Data resource (judul, URL, deskripsi, jenis, status, rating, dll) |
+| `tags` | Daftar tag |
+| `resource_tag` | Relasi many-to-many antara resource dan tag |
+| `user_logs` | Log aktivitas user (login, logout, tambah, edit, hapus, pin, dll) |
 
+---
+
+## 🚀 Cara Install di Local
+
+### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/feriferdian/personal-resource-hub.git
+git clone https://github.com/FerrCodes/Personal-Resource-Hub.git
 ```
 
-## Import Database
+### 2️⃣ Import Database
+- Buka phpMyAdmin
+- Buat database baru (misal: `resource_hub`)
+- Import file `resource_hub_fixed.sql`
 
-- Create database
-- Import `resource_hub_fixed.sql`
-
-## Configure Environment
-
-Rename:
-
-```
-env.example.php
-```
-
-to
-
-```
-env.php
-```
-
-Edit:
+### 3️⃣ Konfigurasi Database
+- Copy `env.example.php` menjadi `env.php`
+- Sesuaikan kredensial database:
 
 ```php
 return [
@@ -136,69 +115,66 @@ return [
 ];
 ```
 
-Run:
+### 4️⃣ Konfigurasi Email (Opsional)
+- Edit `config/mail.php`
+- Isi dengan kredensial SMTP (Gmail App Password atau Mailtrap)
 
+### 5️⃣ Jalankan di Browser
 ```
 http://localhost/personal-resource-hub/login.php
 ```
 
 ---
 
-# 📷 Screenshots
+## 📸 Screenshot
 
-| Dashboard | Resource |
-|-----------|----------|
-| docs/screenshots/dashboard.png | docs/screenshots/detail.png |
+| Dashboard | Detail Resource |
+|---|---|
+| `docs/screenshots/dashboard.png` | `docs/screenshots/detail.png` |
 
-| Settings | Activity |
-|----------|----------|
-| docs/screenshots/settings.png | docs/screenshots/activity.png |
-
----
-
-# 📅 Timeline
-
-| Item | Value |
-|------|-------|
-| Started | 13 June 2026 |
-| Finished | 2 July 2026 |
-| Duration | ~3 Weeks |
+| Settings | Aktivitas |
+|---|---|
+| `docs/screenshots/settings.png` | `docs/screenshots/activity.png` |
 
 ---
 
-# 📖 What I Learned
+## 📅 Timeline
 
-- PHP Native
-- MySQL Relationship
-- CRUD Development
-- Authentication System
-- Email Verification
-- CSRF Protection
-- Password Hashing
-- Responsive UI
-- Deployment
-- Debugging
+| Tahap | Tanggal |
+|---|---|
+| 🟢 Mulai | 13 Juni 2026 |
+| 🏁 Selesai | 2 Juli 2026 |
+| ⏱️ Durasi | ± 3 minggu |
 
 ---
 
-# 👨‍💻 Developer
+## 🧠 Apa yang Saya Pelajari
+
+- ⚙️ **Backend:** PHP Native, MySQL, relasi database, query kompleks
+- 🔒 **Keamanan:** CSRF, Prepared Statement, Password Hashing, `.htaccess`
+- 🎨 **Frontend:** Responsive Design, Dark/Light Mode, CSS Variables
+- ✉️ **Email:** SMTP, PHPMailer, Verifikasi & Reset Password
+- ☁️ **Hosting:** Deployment, Database Import, Proteksi File Sensitif
+- 🐞 **Debugging:** Error handling, log aktivitas, troubleshooting hosting
+
+---
+
+## 👨‍💻 Pengembang
 
 **Feri**
 
-- GitHub
-- LinkedIn
-- Instagram
+- 🐙 GitHub
+- 💼 LinkedIn *(jika sudah ada, update linknya)*
+- 📷 Instagram
 
 ---
 
-# 📄 License
+## 📄 Lisensi
 
-MIT License
+MIT — bebas digunakan, dimodifikasi, dan didistribusikan dengan mencantumkan kredit ke penulis asli.
 
 ---
 
-# 🙏 Thank You
+## 🙏 Terima Kasih
 
-Thank you for visiting this project.
-
-If you have suggestions or improvements, feel free to open an Issue or Pull Request.
+Terima kasih sudah melihat proyek ini! Jika ada saran atau masukan, silakan buat *issue* atau *pull request*. 😊
