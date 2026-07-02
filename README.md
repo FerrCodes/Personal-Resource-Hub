@@ -129,12 +129,12 @@ http://localhost/personal-resource-hub/login.php
 ## 📸 Screenshot
 
 | Dashboard | Detail Resource |
-|---|---|
-| `docs/screenshots/dashboard.png` | `docs/screenshots/detail.png` |
+|-----------|-----------------|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Detail Resource](docs/screenshots/lihat%20detail.png) |
 
 | Settings | Aktivitas |
-|---|---|
-| `docs/screenshots/settings.png` | `docs/screenshots/activity.png` |
+|----------|-----------|
+| ![Settings](docs/screenshots/pengaturan.png) | ![Aktivitas](docs/screenshots/aktivitas.png) |
 
 ---
 
