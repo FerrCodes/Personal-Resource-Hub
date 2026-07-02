@@ -130,11 +130,11 @@ http://localhost/personal-resource-hub/login.php
 
 | Dashboard | Detail Resource |
 |---|---|
-| `docs/screenshots/dashboard.png` | `docs/screenshots/detail.png` |
+| `docs/screenshots/dashboard.png` | `docs/screenshots/lihat detail.png` |
 
 | Settings | Aktivitas |
 |---|---|
-| `docs/screenshots/settings.png` | `docs/screenshots/activity.png` |
+| `docs/screenshots/pengaturan.png` | `docs/screenshots/aktivitas.png` |
 
 ---
 
