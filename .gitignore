@@ -1,0 +1,22 @@
+# File kredensial
+env.php
+.env
+config/env.php
+
+# Logs
+*.log
+error_log
+
+# Database
+*.sql
+
+# File testing
+testing.php
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

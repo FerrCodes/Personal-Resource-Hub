@@ -1,0 +1,1797 @@
+/* =========================================================
+   PERSONAL RESOURCE HUB - MAIN STYLESHEET
+   File: assets/css/style.css
+   Catatan:
+   - Semua warna utama disimpan di :root supaya mudah diganti.
+   - Hindari inline style di HTML/PHP. Pakai class dari file ini.
+   - Urutan section: Reset -> Theme -> Layout -> Components -> Pages -> Responsive.
+   ========================================================= */
+
+/* =========================================================
+   01. RESET & BASE
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-body);
+    color: var(--text-primary);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    border: none;
+}
+
+a {
+    color: inherit;
+}
+
+/* =========================================================
+   02. THEME VARIABLES
+   ========================================================= */
+:root {
+    --bg-body: #f0f2f5;
+    --bg-main: #ffffff;
+    --bg-sidebar: #0f3460;
+    --bg-sidebar-hover: #e94560;
+    --bg-card: #ffffff;
+    --bg-soft: #f8fafc;
+    --bg-tag: #f1f5f9;
+    --bg-danger-soft: #ffe4e6;
+    --bg-favorite: #fffdf5;
+
+    --text-primary: #1a1a2e;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --text-sidebar: #ffffff;
+    --text-sidebar-muted: #cbd5e1;
+    --text-danger: #dc3545;
+    --text-link: #0284c7;
+
+    --border-color: #e2e8f0;
+    --input-border: #cbd5e1;
+    --primary: #0f3460;
+    --accent: #e94560;
+    --accent-hover: #bf3a50;
+    --warning: #f1c40f;
+    --success: #2ecc71;
+
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.03);
+    --shadow-tooltip: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --sidebar-width: 260px;
+}
+
+body.dark-mode {
+    --bg-body: #0f172a;
+    --bg-main: #1e293b;
+    --bg-sidebar: #0b1a30;
+    --bg-card: #1e293b;
+    --bg-soft: #334155;
+    --bg-tag: #334155;
+    --bg-danger-soft: #4a1a1a;
+    --bg-favorite: #332d12;
+
+    --text-primary: #e2e8f0;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-sidebar: #e2e8f0;
+    --text-sidebar-muted: #cbd5e1;
+    --text-danger: #f87171;
+    --text-link: #38bdf8;
+
+    --border-color: #334155;
+    --input-border: #475569;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.28);
+}
+
+/* =========================================================
+   03. APP LAYOUT
+   ========================================================= */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    width: 100%;
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 40px;
+    transition: margin-left 0.3s ease;
+}
+
+.content-title {
+    margin-bottom: 25px;
+    color: var(--primary);
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+body.dark-mode .content-title {
+    color: var(--text-primary);
+}
+
+.page-description {
+    margin-top: -15px;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.empty-state {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   04. SIDEBAR NAVIGATION
+   ========================================================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: var(--sidebar-width);
+    height: 100vh;
+    padding: 30px 20px 20px;
+    overflow-y: auto;
+    background: var(--bg-sidebar);
+    color: var(--text-sidebar);
+    transition: transform 0.3s ease;
+}
+
+.sidebar-title {
+    margin-top: 5px;
+    color: var(--text-sidebar);
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    color: var(--text-sidebar-muted);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--bg-sidebar-hover);
+    color: #ffffff;
+}
+
+.btn-sidebar-tambah {
+    display: block;
+    margin-bottom: 8px; /* beri jarak dengan dropdown */
+    padding: 12px;
+    border-radius: 30px;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-sidebar-tambah:hover,
+.btn-sidebar-tambah.active {
+    background: var(--accent-hover);
+    transform: scale(1.02);
+}
+
+/* =========================================================
+   05. SIDEBAR TOGGLE BUTTONS
+   ========================================================= */
+.toggle-btn,
+.floating-toggle {
+    cursor: pointer;
+}
+
+.sidebar .toggle-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 1001;
+    width: auto;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    color: var(--text-sidebar-muted);
+    font-size: 1.49rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.sidebar .toggle-btn:hover {
+    color: var(--accent);
+}
+
+.floating-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    display: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-tooltip);
+    transition: background 0.2s ease;
+}
+
+.floating-toggle:hover {
+    background: var(--accent);
+}
+
+.app-container.sidebar-collapsed .sidebar {
+    transform: translateX(calc(var(--sidebar-width) * -1));
+}
+
+.app-container.sidebar-collapsed .main-content {
+    margin-left: 0;
+}
+
+.app-container.sidebar-collapsed .floating-toggle {
+    display: block;
+}
+
+/* =========================================================
+   06. TOOLTIP
+   ========================================================= */
+.toggle-btn,
+.btn-pin {
+    position: relative;
+}
+
+.toggle-btn::after,
+.btn-pin::after {
+    position: absolute;
+    z-index: 10;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #1e293b;
+    color: #ffffff;
+    box-shadow: var(--shadow-tooltip);
+    content: attr(data-tooltip);
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition-delay: 0.7s;
+}
+
+.toggle-btn::after {
+    top: 35px;
+    right: 0;
+}
+
+.btn-pin::after {
+    right: 50%;
+    bottom: 35px;
+    transform: translateX(50%);
+}
+
+.toggle-btn:hover::after,
+.btn-pin:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================================================
+   07. BUTTONS & LINKS
+   ========================================================= */
+.btn-primary,
+.filter-form button,
+.form-actions button {
+    padding: 10px 25px;
+    border-radius: var(--radius-md);
+    background: var(--primary);
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover,
+.filter-form button:hover,
+.form-actions button:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+}
+
+.btn-buka {
+    color: var(--text-link);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.btn-buka:hover {
+    text-decoration: underline;
+}
+
+.btn-copy {
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-copy:hover {
+    background: var(--accent);
+}
+
+.btn-edit,
+.btn-hapus,
+.btn-cancel {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.btn-edit {
+    background: var(--bg-soft);
+    color: var(--primary);
+}
+
+body.dark-mode .btn-edit {
+    color: var(--text-primary);
+}
+
+.btn-hapus {
+    background: var(--bg-danger-soft);
+    color: var(--text-danger);
+}
+
+.btn-cancel {
+    color: var(--text-muted);
+}
+
+.btn-cancel:hover {
+    color: var(--accent);
+}
+
+/* =========================================================
+   08. DASHBOARD PAGE
+   ========================================================= */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.big-stat-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 25px;
+    border-bottom: 5px solid var(--primary);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-card);
+}
+
+.big-stat-card.total { border-bottom-color: var(--primary); }
+.big-stat-card.belum-dibaca { border-bottom-color: var(--accent); }
+.big-stat-card.sedang-dipelajari { border-bottom-color: var(--warning); }
+.big-stat-card.selesai { border-bottom-color: var(--success); }
+.big-stat-card.arsip { border-bottom-color: #6c757d; }
+
+.stat-info h3 {
+    margin-bottom: 5px;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.stat-info p {
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+body.dark-mode .stat-info p {
+    color: var(--text-primary);
+}
+
+.stat-icon {
+    font-size: 3rem;
+}
+
+/* Settings page cards */
+.form-container h2 {
+    color: var(--primary);
+}
+body.dark-mode .form-container h2 {
+    color: var(--text-primary);
+}
+
+/* =========================================================
+   09. FILTER & TAG NOTICE
+   ========================================================= */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-soft);
+}
+
+.filter-form input,
+.filter-form select {
+    flex: 1 1 200px;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.filter-tag-notice {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(233, 69, 96, 0.2);
+    font-weight: 500;
+}
+
+.filter-tag-name {
+    font-size: 1.1rem;
+}
+
+.filter-tag-close {
+    margin-left: 10px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+/* =========================================================
+   10. RESOURCE CARDS
+   ========================================================= */
+.resource-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+.resource-card {
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-soft);
+}
+
+.resource-card.kartu-favorit {
+    border: 2px solid var(--warning);
+    background: var(--bg-favorite);
+    box-shadow: 0 8px 25px rgba(241, 196, 15, 0.15);
+}
+
+.resource-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.resource-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.1rem;
+    line-height: 1.35;
+}
+
+body.dark-mode .resource-card-title {
+    color: var(--text-primary);
+}
+
+.resource-favicon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.btn-pin {
+    display: inline-block;
+    color: var(--warning);
+    font-size: 1.5rem;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.btn-pin:hover {
+    transform: scale(1.2);
+}
+
+.resource-description {
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.resource-meta {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.tag-badge {
+    padding: 4px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: var(--bg-tag);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.tag-badge:hover {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(15, 52, 96, 0.2);
+    transform: translateY(-2px);
+}
+
+.resource-actions,
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resource-actions {
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.action-buttons {
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+/* =========================================================
+   11. FORM PAGES: TAMBAH & EDIT
+   ========================================================= */
+.form-container {
+    max-width: 700px;
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-soft);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+form label,
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+body.dark-mode form label,
+body.dark-mode .form-label {
+    color: var(--text-primary);
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+}
+
+form input[type='checkbox'] {
+    width: auto;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.custom-field {
+    display: none;
+    margin-top: 8px;
+}
+
+.custom-field.is-visible {
+    display: block;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 15px;
+    margin-top: 5px;
+    line-height: 1.8;
+}
+
+.checkbox-item {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.error {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    background: var(--bg-danger-soft);
+    color: var(--text-danger);
+    font-weight: 600;
+}
+
+/* =========================================================
+   TOOLTIP INFO UNTUK TAG
+   ========================================================= */
+.tag-info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: help;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tag-info-icon:hover,
+.tag-info-icon.active {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+.tag-info-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: normal;
+    max-width: 310px;
+    width: max-content;
+    text-align: center;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    pointer-events: none;
+    word-wrap: break-word;
+}
+
+.tag-info-icon::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1e293b;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+/* Desktop: hover */
+.tag-info-icon:hover::after,
+.tag-info-icon:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile: klik (active) */
+.tag-info-icon.active::after,
+.tag-info-icon.active::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Dark mode */
+body.dark-mode .tag-info-icon {
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .tag-info-icon:hover,
+body.dark-mode .tag-info-icon.active {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+body.dark-mode .tag-info-icon::after {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .tag-info-icon::before {
+    border-top-color: #1e293b;
+}
+
+/* Dark mode */
+body.dark-mode .tag-info-icon {
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .tag-info-icon:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+body.dark-mode .tag-info-icon::after {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .tag-info-icon::before {
+    border-top-color: #1e293b;
+}
+
+/* =========================================================
+   12. DARK MODE TOGGLE
+   ========================================================= */
+.dark-mode-toggle-container {
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--text-sidebar-muted);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--text-sidebar-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.dark-mode-toggle:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+}
+
+/* =========================================================
+   13. RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) {
+    .main-content {
+        padding: 32px 24px;
+    }
+
+    .resource-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .app-container .sidebar {
+        transform: translateX(calc(var(--sidebar-width) * -1));
+    }
+
+    .app-container:not(.sidebar-collapsed) .sidebar {
+        transform: translateX(0);
+    }
+
+    .main-content,
+    .app-container.sidebar-collapsed .main-content {
+        margin-left: 0;
+        padding: 76px 18px 28px;
+    }
+
+    .floating-toggle,
+    .app-container.sidebar-collapsed .floating-toggle {
+        display: block;
+    }
+
+    .content-title {
+        font-size: 1.6rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-form,
+    .form-actions,
+    .resource-actions,
+    .action-buttons {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .filter-form button,
+    .form-actions button,
+    .btn-cancel,
+    .btn-edit,
+    .btn-hapus,
+    .btn-buka,
+    .btn-copy {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* =========================================================
+   USER DROPDOWN (seperti Claude)
+   ========================================================= */
+.user-dropdown {
+    position: relative;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-dropdown .user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-sidebar);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-weight: 600;
+}
+
+.user-dropdown .user-trigger:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.user-dropdown .user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.user-dropdown .user-name {
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.user-dropdown .user-chevron {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+    opacity: 0.6;
+}
+
+.user-dropdown.open .user-chevron {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu */
+.user-dropdown .dropdown-menu {
+    position: absolute;
+    bottom: 90%;
+    left: 0;
+    right: 0;
+    margin-bottom: 3px;
+    padding: 8px 0;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-tooltip);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    z-index: 100;
+    min-width: 200px;
+}
+
+/* =========================================================
+   SETTINGS - Langsung Terlihat (Tanpa Hover)
+   ========================================================= */
+.dropdown-item.settings-header {
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: default;
+    opacity: 0.7;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 16px 4px 16px;
+}
+
+body.dark-mode .dropdown-item.settings-header {
+    color: var(--text-sidebar);
+}
+
+.settings-options {
+    padding: 0;
+    margin: 0;
+}
+
+.settings-item {
+    padding-left: 32px !important; /* indentasi */
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+body.dark-mode .settings-item {
+    color: var(--text-sidebar-muted);
+}
+
+.settings-item:hover {
+    color: var(--text-primary);
+}
+
+body.dark-mode .settings-item:hover {
+    color: var(--text-sidebar);
+}
+
+.user-dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+body.dark-mode .user-dropdown .dropdown-menu {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.15s ease;
+    border: none;
+    background: transparent;
+    width: 100%;
+    cursor: pointer;
+}
+
+body.dark-mode .dropdown-menu .dropdown-item {
+    color: var(--text-sidebar);
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: var(--bg-soft);
+}
+
+body.dark-mode .dropdown-menu .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dropdown-menu .dropdown-item.danger {
+    color: var(--text-danger);
+}
+
+.dropdown-menu .dropdown-divider {
+    height: 1px;
+    margin: 6px 12px;
+    background: var(--border-color);
+}
+
+body.dark-mode .dropdown-menu .dropdown-divider {
+    background: var(--border-color);
+}
+
+/* Plan label */
+.user-dropdown .plan-label {
+    padding: 4px 12px;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    background: var(--bg-soft);
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+body.dark-mode .user-dropdown .plan-label {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-sidebar-muted);
+}
+
+.user-section {
+    position: relative;
+    margin-top: auto; /* agar section ini menempel di bawah */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* jarak antara tombol dan trigger */
+}
+
+.user-section .user-dropdown {
+    position: relative; /* ubah dari absolute agar tetap dalam aliran */
+    margin-top: 0; /* hapus margin-top auto */
+}
+
+.user-section .dropdown-menu {
+    position: absolute;
+    bottom: calc(100% + 8px); /* muncul tepat di atas tombol + trigger */
+    left: 0;
+    right: 0;
+    /* ... styling lainnya tetap sama ... */
+    z-index: 100;
+}
+
+.detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+.detail-container .detail-title {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+body.dark-mode .detail-container .detail-title {
+    color: var(--text-primary);
+}
+.detail-container .detail-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+.detail-container .detail-item {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.detail-container .detail-item:last-child {
+    border-bottom: none;
+}
+.detail-container .detail-label {
+    font-weight: 600;
+    width: 140px;
+    flex-shrink: 0;
+    color: var(--text-secondary);
+}
+.detail-container .detail-value {
+    color: var(--text-primary);
+    word-break: break-word;
+}
+.detail-container .detail-value a {
+    color: var(--text-link);
+    text-decoration: none;
+}
+.detail-container .detail-value a:hover {
+    text-decoration: underline;
+}
+.detail-container .detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.detail-container .detail-tags .tag-badge {
+    background: var(--bg-tag);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+body.dark-mode .detail-container .detail-tags .tag-badge {
+    background: var(--bg-soft);
+    color: var(--text-sidebar);
+}
+.detail-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.detail-actions a {
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+}
+.btn-back {
+    background: var(--bg-soft);
+    color: var(--text-primary);
+}
+body.dark-mode .btn-back {
+    background: var(--bg-sidebar);
+    color: var(--text-sidebar);
+}
+.btn-back:hover {
+    background: var(--accent);
+    color: #fff;
+}
+.btn-edit-detail {
+    background: var(--primary);
+    color: #fff;
+}
+.btn-edit-detail:hover {
+    background: var(--accent);
+}
+@media (max-width: 600px) {
+    .detail-container .detail-item {
+        flex-direction: column;
+        gap: 4px;
+    }
+    .detail-container .detail-label {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   RECENT RESOURCES (DASHBOARD)
+   ========================================================= */
+.recent-section {
+    margin-top: 40px;
+}
+
+.recent-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.recent-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recent-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--accent);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recent-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-card);
+}
+
+.recent-item .title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.recent-item .title a {
+    text-decoration: none;
+    color: var(--text-link);
+    transition: color 0.2s ease;
+}
+
+.recent-item .title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.recent-item .meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 600px) {
+    .recent-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .recent-item .meta {
+        white-space: normal;
+    }
+}
+
+.btn-detail {
+    background: var(--primary);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+.btn-detail:hover {
+    background: var(--accent);
+}
+
+/* =========================================================
+   SHOW/HIDE PASSWORD
+   ========================================================= */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 45px; /* ruang untuk tombol mata */
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    padding: 5px;
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+.password-wrapper .toggle-password:hover {
+    color: var(--accent);
+}
+
+body.dark-mode .password-wrapper .toggle-password {
+    color: var(--text-sidebar-muted);
+}
+
+body.dark-mode .password-wrapper .toggle-password:hover {
+    color: var(--accent);
+}
+
+/* =========================================================
+   TAMBAHAN RESPONSIVE UNTUK HP (Lebih Rapi)
+   ========================================================= */
+
+/* 1. Filter form di HP - full width & vertikal */
+@media (max-width: 600px) {
+    .filter-form {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .filter-form input,
+    .filter-form select,
+    .filter-form button {
+        width: 100% !important;
+        flex: none !important;
+        font-size: 0.95rem;
+        padding: 12px 14px;
+    }
+
+    .filter-form button {
+        margin-top: 5px;
+    }
+}
+
+/* 2. Resource card di HP - lebih rapi & tombol full width */
+@media (max-width: 600px) {
+    .resource-card {
+        padding: 18px 16px;
+    }
+
+    .resource-card-title {
+        font-size: 1rem;
+    }
+
+    .resource-description {
+        font-size: 0.9rem;
+    }
+
+    .resource-meta {
+        font-size: 0.8rem;
+    }
+
+    /* Tombol aksi (Buka Resource, Salin Link) */
+    .resource-actions {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .resource-actions .btn-buka,
+    .resource-actions .btn-copy {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Tombol bawah (Detail, Edit, Hapus) */
+    .action-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .action-buttons .btn-detail,
+    .action-buttons .btn-edit,
+    .action-buttons .btn-hapus {
+        flex: 1 1 30%;
+        text-align: center;
+        padding: 8px 6px;
+        font-size: 0.8rem;
+        min-width: 70px;
+    }
+
+    /* Tag badge di HP */
+    .tag-list {
+        gap: 4px;
+    }
+
+    .tag-badge {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+    }
+}
+
+/* 3. Detail halaman di HP */
+@media (max-width: 600px) {
+    .detail-container {
+        padding: 18px 14px;
+    }
+
+    .detail-title {
+        font-size: 1.4rem !important;
+    }
+
+    .detail-item {
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 0;
+    }
+
+    .detail-label {
+        width: 100% !important;
+        font-size: 0.85rem;
+    }
+
+    .detail-value {
+        font-size: 0.9rem;
+    }
+
+    .detail-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .detail-actions a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* 4. Dashboard statistik di HP */
+@media (max-width: 600px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .big-stat-card {
+        padding: 18px 14px;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .stat-info h3 {
+        font-size: 0.75rem;
+    }
+
+    .stat-info p {
+        font-size: 1.8rem;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+    }
+
+    /* Kartu total di HP (full width) */
+    .big-stat-card.total {
+        grid-column: 1 / -1;
+    }
+}
+
+/* 5. Settings page di HP */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 18px 14px;
+        margin-top: 10px;
+    }
+
+    .form-container h2 {
+        font-size: 1.1rem !important;
+    }
+
+    /* Card kontak di settings (email & IG) */
+    .form-container div[style*="display:flex; flex-wrap:wrap; gap:15px;"] {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .form-container div[style*="display:inline-flex; align-items:center; gap:10px;"] {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* Tombol Update Password & Unduh CSV */
+    .form-actions button,
+    .btn-primary {
+        width: 100% !important;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* 6. Dropdown user di HP */
+@media (max-width: 600px) {
+    .user-dropdown .dropdown-menu {
+        min-width: 220px;
+        right: 0;
+        left: auto;
+    }
+
+    .dropdown-menu .dropdown-item {
+        font-size: 0.85rem;
+        padding: 8px 14px;
+    }
+}
+
+/* 7. Dashboard grid untuk layar sangat kecil (≤ 400px) */
+@media (max-width: 400px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .big-stat-card.total {
+        grid-column: auto;
+    }
+
+    .content-title {
+        font-size: 1.3rem;
+    }
+
+    .page-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* 8. Login & Register - Perbaiki di Mobile (PASTI BERHASIL) */
+@media (max-width: 600px) {
+    /* Target container utama login/register */
+    .main-content[style*="display:flex"] {
+        display: flex !important;
+        flex-direction: column-reverse !important; /* <-- kunci: balik urutan */
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        padding: 10px 15px !important;
+        min-height: auto !important;
+        margin-left: 0 !important;
+    }
+
+    /* Form login/register */
+    .main-content .form-container {
+        width: 100% !important;
+        max-width: 400px !important;
+        flex: none !important;
+        margin: 0 !important;
+        padding: 15px 18px !important;
+    }
+
+    /* Welcome section - di atas (karena column-reverse) */
+    .welcome-section {
+        width: 100% !important;
+        max-width: 400px !important;
+        flex: none !important;
+        padding: 5px 15px !important;
+        margin: 0 !important;
+        text-align: center !important;
+    }
+
+    .welcome-section h2 {
+        font-size: 1.4rem !important;
+        margin-bottom: 2px !important;
+    }
+
+    .welcome-section p {
+        font-size: 0.9rem !important;
+        margin: 0 !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Perbaiki gap di form-container */
+    .main-content .form-container .form-group {
+        margin-bottom: 10px !important;
+    }
+
+    .main-content .form-container .form-actions {
+        margin-top: 15px !important;
+    }
+
+    .main-content .form-container .content-title {
+        font-size: 1.4rem !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/* 16. Activity Page - Perbaiki di HP */
+.activity-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.activity-item .activity-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.activity-item .activity-icon {
+    font-size: 1.1rem;
+}
+
+.activity-item .activity-action {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.activity-item .activity-details {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    word-break: break-word;
+}
+
+.activity-item .activity-time {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .activity-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 10px 0;
+    }
+
+    .activity-item .activity-left {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .activity-item .activity-action {
+        font-size: 0.9rem;
+    }
+
+    .activity-item .activity-details {
+        font-size: 0.8rem;
+        width: 100%;
+        display: block;
+        margin-left: 28px; /* indentasi sejajar icon */
+    }
+
+    .activity-item .activity-time {
+        align-self: flex-end;
+        font-size: 0.7rem;
+        margin-top: 2px;
+    }
+}
+
+/* =========================================================
+   TOOLTIP - PERBAIKAN UNTUK MOBILE
+   ========================================================= */
+
+/* Default: tooltip di atas (desktop) */
+.tag-info-icon::after {
+    bottom: calc(100% + 10px);
+    top: auto;
+}
+
+.tag-info-icon::before {
+    bottom: calc(100% + 4px);
+    top: auto;
+    border-top-color: #1e293b;
+    border-bottom-color: transparent;
+}
+
+/* Mobile: tooltip di bawah agar tidak terpotong */
+@media (max-width: 600px) {
+    .tag-info-icon::after {
+        bottom: auto;
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 260px;
+        width: max-content;
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+
+    .tag-info-icon::before {
+        bottom: auto;
+        top: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%);
+        border-top-color: transparent;
+        border-bottom-color: #1e293b;
+    }
+
+    /* Posisi tooltip ke kiri jika terlalu panjang */
+    .tag-info-icon::after {
+        left: 0;
+        transform: translateX(0);
+    }
+
+    .tag-info-icon::before {
+        left: 12px;
+        transform: translateX(0);
+    }
+}
+
+/* ===== RESPONSIF MANAGE USERS ===== */
+@media (max-width: 600px) {
+    .manage-users-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -10px;
+        padding: 0 10px;
+    }
+    .manage-users-wrapper table {
+        min-width: 500px;
+        font-size: 0.8rem;
+    }
+    .manage-users-wrapper th,
+    .manage-users-wrapper td {
+        padding: 6px 8px !important;
+        white-space: nowrap;
+    }
+    .manage-users-wrapper .btn-status {
+        font-size: 0.7rem !important;
+        padding: 4px 8px !important;
+    }
+}

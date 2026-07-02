@@ -1,0 +1,63 @@
+# =========================================================
+# .htaccess - PERSONAL RESOURCE HUB
+# Keamanan dasar untuk PHP Native project
+# =========================================================
+
+# =========================================================
+# 1. NONAKTIFKAN DIRECTORY LISTING
+# Mencegah user melihat daftar file jika folder tidak punya index
+# =========================================================
+Options -Indexes
+
+# =========================================================
+# 2. BLOKIR AKSES KE FILE SENSITIF
+# File seperti env.php, .sql, .log, .ini, .htaccess tidak bisa diakses
+# =========================================================
+<FilesMatch "(env\.php|\.sql|\.log|\.ini|\.htaccess|\.htpasswd|composer\.json|composer\.lock|package\.json|package-lock\.json)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# =========================================================
+# 3. BLOKIR AKSES KE FOLDER SENSITIF
+# Folder config/ dan src/ tidak bisa diakses langsung via browser
+# =========================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Blokir akses ke folder config/
+    RewriteRule ^config/ - [F,L]
+    
+    # Blokir akses ke folder src/ (PHPMailer)
+    RewriteRule ^src/ - [F,L]
+    
+    # Blokir akses ke folder assets/ (opsional, tapi file tetap bisa di-load via HTML)
+    # RewriteRule ^assets/ - [F,L]  # UNCOMMENT jika ingin blokir
+    
+    # Blokir akses ke file .php tertentu (opsional)
+    # RewriteRule ^(env|config|database)\.php$ - [F,L]
+</IfModule>
+
+# =========================================================
+# 4. PROTECTION DARI USER AGENT MENGGUNAKAN
+# Blokir bot/spammer yang mencurigakan
+# =========================================================
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_USER_AGENT} (libwww|wget|curl|nmap|nikto|scanner) [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# =========================================================
+# 5. REDIRECT HTTP KE HTTPS (Opsional, aktifkan setelah SSL)
+# =========================================================
+# <IfModule mod_rewrite.c>
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+# </IfModule>
+
+# =========================================================
+# 6. MENGATUR ERROR PAGE (Opsional)
+# =========================================================
+# ErrorDocument 404 /404.php
+# ErrorDocument 403 /403.php
+# ErrorDocument 500 /500.php
